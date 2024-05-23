@@ -1,14 +1,24 @@
+<!-- shop/templates/shop/product_detail.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Products</title>
+    <title>{{ product.name }}</title>
 </head>
 <body>
-    <h2>Products</h2>
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+    <p>Price: ${{ product.price }}</p>
+    <h3>Reviews</h3>
     <ul>
-        {% for product in products %}
-        <li>{{ product.name }} - ${{ product.price }}</li>
+        {% for review in product.reviews.all %}
+        <li>{{ review.user.username }}: {{ review.rating }} stars - {{ review.comment }}</li>
         {% endfor %}
     </ul>
+    <h3>Add a Review</h3>
+    <form method="post" action="{% url 'add_review' product.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
