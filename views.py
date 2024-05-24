@@ -26,3 +26,9 @@ def recommended_products(user):
     user_orders = OrderItem.objects.filter(order__user=user).values('product_id')
     recommended = Product.objects.filter(id__in=user_orders).annotate(order_count=Count('orderitem')).order_by('-order_count')[:5]
     return recommended
+
+# shop/views.py
+def product_detail(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    recommended_products = recommended_products(request.user)
+    return render(request, 'shop/product_detail.html', {'product': product, 'recommended_products': recommended_products})
