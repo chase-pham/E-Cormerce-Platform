@@ -19,3 +19,13 @@ class Discount(models.Model):
     valid_from = models.DateTimeField()
     valid_to = models.DateTimeField()
     active = models.BooleanField(default=True)
+
+def apply_discount(request):
+    if request.method == 'POST':
+        code = request.POST['code']
+        try:
+            discount = Discount.objects.get(code=code, active=True)
+            # Apply discount logic
+        except Discount.DoesNotExist:
+            # Handle invalid discount code
+    return redirect('checkout')
