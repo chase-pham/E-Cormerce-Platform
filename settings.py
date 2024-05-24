@@ -8,3 +8,13 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+USE_I18N = True
+USE_L10N = True
+LANGUAGES = [
+    ('en', 'English'),
+    ('es', 'Spanish'),
+]
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
