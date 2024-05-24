@@ -20,5 +20,13 @@
         {{ form.as_p }}
         <button type="submit">Submit</button>
     </form>
+    <!-- shop/templates/shop/product_detail.html -->
+    <h3>Recommended Products</h3>
+    <ul>
+    {% for product in recommended_products %}
+    <li>{{ product.name }} - ${{ product.price }}</li>
+    {% endfor %}
+    </ul>
+
 </body>
 </html>
