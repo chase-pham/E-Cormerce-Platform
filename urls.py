@@ -5,4 +5,5 @@ urlpatterns = [
     path('products/<int:product_id>/review/', views.add_review, name='add_review'),
     path('profile/', views.profile, name='profile'),
     path('checkout/', views.checkout, name='checkout'),
+    path('apply-discount/', views.apply_discount, name='apply_discount'),
 ]
