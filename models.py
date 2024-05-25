@@ -29,3 +29,7 @@ def apply_discount(request):
         except Discount.DoesNotExist:
             # Handle invalid discount code
     return redirect('checkout')
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='product_images/')
