@@ -41,3 +41,10 @@ def send_order_confirmation(user, order):
         [user.email],
         fail_silently=False,
     )
+
+def upload_product_image(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    if request.method == 'POST':
+        image = request.FILES['image']
+        ProductImage.objects.create(product=product, image=image)
+    return redirect('product_detail', product_id=product.id)
