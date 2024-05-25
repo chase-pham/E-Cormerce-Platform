@@ -32,3 +32,12 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     recommended_products = recommended_products(request.user)
     return render(request, 'shop/product_detail.html', {'product': product, 'recommended_products': recommended_products})
+
+def send_order_confirmation(user, order):
+    send_mail(
+        'Order Confirmation',
+        f'Your order {order.id} has been placed successfully.',
+        'from@example.com',
+        [user.email],
+        fail_silently=False,
+    )
